@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <script src="/js/A-Frame/aframe_0.7.1.js"></script>
+    <script src="../LITEroom_0.3.4_beta.js"></script>
+</head>
+<body>
+    <a-scene>
+        <a-assets>
+            <img crossorigin="anonymous" id="button1"  src="https://cdn.glitch.com/12c6b02e-4ab0-4f41-bc95-73a53a98060e%2FUntitled-1-08-05.png?1510716090922"/>
+            <img crossorigin="anonymous" id="button1_sel"  src="https://cdn.glitch.com/12c6b02e-4ab0-4f41-bc95-73a53a98060e%2Fa-04.png?1510716932394"/>
+            <img crossorigin="anonymous" id="space_link" src="https://cdn.glitch.com/12c6b02e-4ab0-4f41-bc95-73a53a98060e%2FRectangle%2059%20Copy%20%2B%20Spaces.png?1515641929421"/>
+            <img crossorigin="anonymous" id="space_link_sel" src="https://cdn.glitch.com/12c6b02e-4ab0-4f41-bc95-73a53a98060e%2FSpaces.png?1510719216784"/>
+        </a-assets>
+        
+        <a-camera position="0 0 5">
+            <a-cursor color="#FF5050" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.025;" fuse-timeout="500" fuse="true" visible="false"></a-cursor>
+            <a-entity id="cursor" position="0 0 -1" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+					  material="color:red; transparent:true;" lite.show-ontop></a-entity>
+        </a-camera>
+        
+        <a-plane position="0 0 0" src="#button1" material="transparent: true;" lite.responsive_cursor="btex_sel:#button1_sel; cursorShrinkRate: 0.5;"></a-plane>
+        <a-plane position="-2 0 0" material="transparent: true; " color="#f65" lite.responsive_cursor="bcolor_sel:#557; cursorShrinkRate: 0.5;"></a-plane>
+        <a-entity position="1.2 0 0" geometry="primitive: plane;" material="transparent: true; src:#button1;" lite.responsive_cursor="btex_sel:#button1_sel; cursorShrinkRate: 0.5;"></a-entity>
+        <a-entity geometry="primitive: plane; height: 1; width: 3.5" position="2 3 0" rotation="0 -10 0" scale="0.8 0.8 1" material="src:#space_link; transparent:true" lite.responsive_cursor="btex_sel:#space_link_sel; cursorShrinkRate: 0.7;"> </a-entity>
+        <a-entity geometry="primitive: plane; height: 1; width: 3.5" position="0 3 0" rotation="0 -10 0" scale="0.8 0.8 1" material="src:#space_link; transparent:true" lite.responsive_cursor="btex_sel:#space_link_sel; cursorShrinkRate: 0.7;"> </a-entity>
+        <a-sky color="#28f"></a-sky>
+    </a-scene>
+    
+</body>
+</html>

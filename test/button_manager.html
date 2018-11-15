@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <script src="/js/A-Frame/aframe_0.8.2.js"></script>
+    
+    <script src="/js/LITEroomJS/LITEroom_0.3.7.js"></script>
+    
+</head>
+<body>
+    <a-scene>
+        <a-assets>
+            <img crossorigin="anonymous" id="scene_icon" src="/images/room_icon.png"/>
+        </a-assets>
+        
+        <a-entity position="0 4.3 -5" lite_round_button="onclick: OnClick(this)"></a-entity>
+        
+        <!-- Image on the button -->
+        <a-entity position="2 2.7 -5" lite_round_button="labelType: image; label:#scene_icon; onclick: OnClick(this)"></a-entity>
+        
+        <a-entity position="0 2.7 -5" lite_round_button="radius: 1; label: B; onclick: OnClick(this)"></a-entity>
+        <a-entity position="0 0.7 -5" lite_round_button="labelType: image; bgColor: #f00; fgColor: #fb0; label:#scene_icon; onclick: OnClick(this)"></a-entity>
+        
+        <a-entity id="camera" position="0 1.6 0">
+            <a-entity id="subcamera" position="0 -1.6 0">
+                <a-camera fov="60" lite_animated_cursor>
+            </a-entity>
+        </a-entity>
+        
+        <a-sky color="#555"></a-sky>
+    </a-scene>
+    <script>
+        
+        function OnClick(n){
+            console.log(n);
+        }
+    </script>
+</body>
+</html>

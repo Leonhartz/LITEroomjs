@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <script src="/js/A-Frame/aframe_0.8.2.min.js"></script>
+    <script src="../LITEroom_0.3.4r1.js"></script>
+</head>
+<body>
+    <a-scene>
+        <a-entity id="camera">
+            <a-camera>
+                <a-cursor color="#FF5050" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.025;" fuse-timeout="500" fuse="true" ></a-cursor>
+            </a-camera>
+        </a-entity>
+        <a-plane width="10" height="10" color="#888" rotation="-90 0 0"></a-plane>
+        <a-ring id="point1" radiusInner="1" radiusOuter="0.5" position="0.011 0.02 -0.5" rotation="-90 0 0" scale="0.2 0.2 0.2" color="#fff"
+                lite.responsive_cursor="bcolor_sel: #fb0; bcolor: #fff;" lite_fly_here="allow_interrupt: true; speed: 0.5; ignore_y: true; offset_y: 0.5;">
+            <a-plane width="2.5" height="2.5" position="0 0.1 0" opacity="0"></a-plane>
+        </a-ring>
+        <a-ring id="point2" radiusInner="1" radiusOuter="0.5" position="3 0.02 -0.5" rotation="-90 0 0" scale="0.2 0.2 0.2" color="#fff"
+                lite.responsive_cursor="bcolor_sel: #fb0; bcolor: #fff;" lite_fly_here="allow_interrupt: true; speed: 0.5; ignore_y: true; offset_y: 1.5;">
+            <a-plane width="2.5" height="2.5" position="0 0.1 0" opacity="0"></a-plane>
+        </a-ring>
+        <a-ring id="point3" radiusInner="1" radiusOuter="0.5" position="0.5 0.02 -3" rotation="-90 0 0" scale="0.2 0.2 0.2" color="#fff"
+                lite.responsive_cursor="bcolor_sel: #fb0; bcolor: #fff;" lite_fly_here="allow_interrupt: false; speed: 0.5; ignore_y: true; offset_y: 2.5;">
+            <a-plane width="2.5" height="2.5" position="0 0.1 0" opacity="0"></a-plane>
+        </a-ring>
+        
+        <a-plane position="0 0 -8" color="black" lite.responsive_cursor onclick="MoveTo('point2')"></a-plane>
+        
+        <a-sky color="#28f"></a-sky>
+    </a-scene>
+    <script>
+        
+        var scene = $_("a-scene");
+        scene.addEventListener("loaded", Init);
+        var point1 = $("point1");
+        var point2 = $("point2");
+        function Init(){
+            point1.addEventListener("onBeforeMoveStart", function(){console.log("before move start");}); // Called once before the first movement
+            point1.addEventListener("onAfterMoveStart", function(){console.log("after move start");}); // Called once after the first movement
+            point1.addEventListener("onBeforeMoving", function(){console.log("onBeforeMoving");}); // Called every frame before the moving
+            point1.addEventListener("onAfterMoving", function(){console.log("onAfterMoving");}); // Called every frame after the moving
+            point1.addEventListener("onBeforeMoveEnd", function(){console.log("onBeforeMoveEnd");}); // Called once before move end
+            point1.addEventListener("onAfterMoveEnd", function(){console.log("onAfterMoveEnd");}); // Called once after move end
+            point2.addEventListener("onBeforeMoveStart", function(){console.log("before move start");});
+            point2.addEventListener("onAfterMoveStart", function(){console.log("after move start");});
+            point2.addEventListener("onBeforeMoving", function(){console.log("onBeforeMoving");});
+            point2.addEventListener("onAfterMoving", function(){console.log("onAfterMoving");});
+            point2.addEventListener("onBeforeMoveEnd", function(){console.log("onBeforeMoveEnd");});
+            point2.addEventListener("onAfterMoveEnd", function(){console.log("onAfterMoveEnd");});
+        }
+        
+        function MoveTo(st){
+            var comp = document.getElementById(st).components.lite_fly_here;
+            
+            comp.trigger();
+        }
+        
+    </script>
+</body>
+</html>

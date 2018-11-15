@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/js/A-Frame/aframe_0.8.2.js"></script>
+    <script src="/js/LITEroomJS/LITEroom_0.3.7.js"></script>
+    
+</head>
+<body>
+    <a-scene>
+        <a-assets>
+            <img crossorigin="anonymous" id="scene_icon" src="/images/room_icon.png"/>
+        </a-assets>
+        
+        
+        <a-entity id="camera" position="0 1.6 0">
+            <a-entity id="subcamera" position="0 -1.6 0">
+                <a-camera fov="60" lite_animated_cursor>
+            </a-entity>
+        </a-entity>
+        
+        <a-entity id="menu_container">
+            <a-entity id="menu_btn" position="0 0 -5" lite_round_button="radius: 0.2; bgColor: #000; fgColor: #ffc000; margin: 0.025; label: Menu; labelSize: 0.3; labelColor: #000;
+                onclick:ToggleMenu();">
+                
+                <a-entity id="popup" lite_popup_anim scale="0 0 0">
+                    <a-plane position="0 1 0" material="color: #000; opacity: 0.5;">
+                        <a-entity lite_button position="0 0 0.002"></a-entity>
+                        
+                    </a-plane>
+                    
+                </a-entity>
+            </a-entity>
+        </a-entity>
+        
+        
+        <a-sky color="#555"></a-sky>
+    </a-scene>
+    <script>
+        
+        var showingMenu = false;
+        function ToggleMenu(){
+            showingMenu = !showingMenu;
+            if(showingMenu){
+                document.getElementById("popup").emit("popout");
+            }else{
+                document.getElementById("popup").emit("popin");
+            }
+        }
+        
+    </script>
+</body>
+</html>

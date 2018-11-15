@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <script src="/js/A-Frame/aframe_0.8.2.js"></script>
+    
+    <script src="/js/LITEroomJS/LITEroom_0.38r1.js"></script>
+
+</head>
+<body>
+    <a-scene>
+        <a-assets>
+            <img crossorigin="anonymous" id="scene_icon" src="/images/room_icon.png"/>
+        </a-assets>
+        
+        <a-entity position="0 1.6 0" rotation="0 0 0">
+            <a-entity position="0 0 -5">
+                <a-plane id="background" color="#000" opacity="0.5" width="1.8" height="2.3" position="0 0 -0.01"></a-plane>
+                
+                <!--buttons manager-->
+                <a-entity id="man" lite_buttons_manager lite_layout="padding_y: 0.05" position="-2 0 0">
+                    <a-entity lite_button="width: 1.5; height: 0.3; label: Button;"></a-entity>
+                    <a-entity lite_button="width: 1.5; height: 0.3; label: Button;"></a-entity>
+                    <a-entity lite_round_button="radius: 0.3; label: B; labelSize: 1"></a-entity>
+                    <a-entity lite_button="width: 1.5; height: 0.3; label: Button;"></a-entity>
+                    <a-entity lite_icon_button="width: 1.5; height: 0.3; label: Icon Button;"></a-entity>
+                    <a-entity lite_button="width: 1.5; height: 0.3; label: Button;"></a-entity>
+                </a-entity>
+                
+                <!--options -->
+                <a-entity lite_layout="padding_y: 0.05">
+                    <a-entity lite_button="width: 1.5; height: 0.3; label: Set Max Select to 3; onclick: setMaxSelect(3)"></a-entity>
+                    <a-entity lite_button="width: 1.5; height: 0.3; label: Set Max Select to 1; onclick: setMaxSelect(1)"></a-entity>
+                    <a-entity lite_button="width: 1.5; height: 0.3; label: Remove Manager; onclick: removeManager()"></a-entity>
+                </a-entity>
+                
+                <!--instructions-->
+                <a-text value="Click on the option here, then click on the buttons to see the effect" align="center" width="1.7" wrap-count="30" position="0 1 0"></a-text>
+                <a-text value="The Manager also provide a callback event (lite_onButtonClicked) that carries information about the buttons. The infos are printed in the console when you click the buttons. Check the code in the html for how to access these data." align="center" width="4" wrap-count="55" position="-1 2 0"></a-text>
+            </a-entity>
+        </a-entity>
+        
+        
+        
+        <a-entity id="camera" position="0 1.6 0">
+            <a-entity id="subcamera" position="0 -1.6 0">
+                <a-camera fov="60" lite_animated_cursor>
+            </a-entity>
+        </a-entity>
+        
+        <a-sky color="#555"></a-sky>
+    </a-scene>
+    <script>
+        var man = document.getElementById("man");
+        
+        //*** How to get data from the manager
+        man.addEventListener("lite_onButtonClicked", onButtonClicked);
+        function onButtonClicked(evt){
+            console.log("===========================");
+            console.log("Button number: " + evt.detail.index);
+            console.log("Button element: ");
+            console.log(evt.detail.el);
+            console.log("List of currently selected buttons: ");
+            console.log(evt.detail.selected);
+        }
+        
+        function setMaxSelect(n){
+            man.setAttribute("lite_buttons_manager", {maxSelect: n});
+        }
+        function removeManager(){
+            man.removeAttribute("lite_buttons_manager");
+        }
+        
+        
+        
+    </script>
+</body>
+</html>
